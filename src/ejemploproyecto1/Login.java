@@ -4,6 +4,8 @@
  */
 package ejemploproyecto1;
 
+import Administrador.AdministradorProfesores;
+
 /**
  *
  * @author USUARIO
