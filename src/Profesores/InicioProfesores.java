@@ -28,6 +28,10 @@ public class InicioProfesores extends javax.swing.JFrame {
      */
     public InicioProfesores() {
         initComponents();
+        //No se cambie el tamaño de la ventana
+        this.setResizable(false);
+        //Utilizado para visualizar en el centro la ventana
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -58,6 +62,12 @@ public class InicioProfesores extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Curso Asignado");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        CursoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CursoBtnActionPerformed(evt);
+            }
+        });
         jPanel1.add(CursoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 210, 70));
         jPanel1.add(AlumnosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 210, 20));
 
@@ -98,6 +108,13 @@ public class InicioProfesores extends javax.swing.JFrame {
         ActualizarDatos ad = new ActualizarDatos();
         ad.setVisible(true);
     }//GEN-LAST:event_ActualizarDatosBtnActionPerformed
+
+    private void CursoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CursoBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        AdministracionCurso ap = new AdministracionCurso();
+        ap.setVisible(true);
+    }//GEN-LAST:event_CursoBtnActionPerformed
 
     /**
      * @param args the command line arguments
