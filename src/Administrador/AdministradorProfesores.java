@@ -77,7 +77,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
         ListadoProfesores = new javax.swing.JTable();
         CargaMBtn = new javax.swing.JButton();
         ActualizarBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        ExportarHTMLBtn = new javax.swing.JButton();
         CrearProfBtn = new javax.swing.JButton();
         EliminarBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -146,14 +146,14 @@ public class AdministradorProfesores extends javax.swing.JFrame {
         });
         jPanel1.add(ActualizarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 160, 40));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("Exportar listado a HTML");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ExportarHTMLBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ExportarHTMLBtn.setText("Exportar listado a HTML");
+        ExportarHTMLBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ExportarHTMLBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 350, 40));
+        jPanel1.add(ExportarHTMLBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 350, 40));
 
         CrearProfBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CrearProfBtn.setText("Crear");
@@ -515,7 +515,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ExportarHTMLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarHTMLBtnActionPerformed
         // TODO add your handling code here:
         String cadenaHTML = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -565,7 +565,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ExportarHTMLBtnActionPerformed
 
     public void actualizarListadoProfesores() {
 
@@ -700,11 +700,11 @@ public class AdministradorProfesores extends javax.swing.JFrame {
     private javax.swing.JButton CrearProfBtn;
     private javax.swing.JButton EliminarBtn;
     private javax.swing.JButton EliminarCursosBtn;
+    private javax.swing.JButton ExportarHTMLBtn;
     private javax.swing.JTable ListadoCursos;
     private javax.swing.JTable ListadoProfesores;
     private javax.swing.JTable TablaGenero;
     private javax.swing.JTable TablaTop;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

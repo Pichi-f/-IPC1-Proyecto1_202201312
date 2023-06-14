@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/CrearCurso.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/ActualizarProfesor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/ejemploproyecto1/Login.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/Profesor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/CrearProfesor.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/ejemploproyecto1/Login.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/Curso.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Profesores/InicioProfesores.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Profesores/ActualizarDatos.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/ActualizarCursos.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/EjemploProyecto1/src/Administrador/AdministradorProfesores.java</file>
         </group>
     </open-files>

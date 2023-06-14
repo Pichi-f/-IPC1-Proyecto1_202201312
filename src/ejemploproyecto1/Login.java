@@ -5,6 +5,9 @@
 package ejemploproyecto1;
 
 import Administrador.AdministradorProfesores;
+import static Administrador.AdministradorProfesores.fila;
+import Administrador.Profesor;
+import Profesores.InicioProfesores;
 
 /**
  *
@@ -15,6 +18,9 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    public static Profesor[] profesores = new Profesor[50];
+    public static int contadorProfesores;
+
     public Login() {
         initComponents();
         this.setResizable(false);
@@ -33,10 +39,10 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        CodigoInput = new javax.swing.JTextField();
-        PasswordInput = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        CodigoInput = new javax.swing.JTextField();
+        PasswordInput = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,14 +57,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Código");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 88, -1, -1));
 
-        CodigoInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodigoInputActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CodigoInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 320, -1));
-        jPanel1.add(PasswordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 320, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("DTT");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
@@ -72,26 +70,48 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 320, -1));
 
+        CodigoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodigoInputActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CodigoInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 320, -1));
+        jPanel1.add(PasswordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 320, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CodigoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoInputActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String codigo = CodigoInput.getText();
         String contraseña = PasswordInput.getText();
-        
+
         if (codigo.equals("admin") && contraseña.equals("admin")) {
             this.setVisible(false);
             AdministradorProfesores ap = new AdministradorProfesores();
             ap.setVisible(true);
+        } else {
+            System.out.println("Invalido");
+        }
+
+        for (int contadorProfesores = 0; contadorProfesores < profesores.length; contadorProfesores++) {
+            if (AdministradorProfesores.profesores[contadorProfesores] != null && AdministradorProfesores.profesores[contadorProfesores].codigo.equals(codigo) && AdministradorProfesores.profesores[contadorProfesores].contraseña.equals(contraseña)) {
+                System.out.println("comprobado");
+                this.setVisible(false);
+                InicioProfesores ip = new InicioProfesores();
+                ip.setVisible(true);
+                return;
+            } else {
+                System.out.println("Invalido");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CodigoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoInputActionPerformed
 
     /**
      * @param args the command line arguments
