@@ -8,6 +8,7 @@ import Administrador.AdministradorProfesores;
 import static Administrador.AdministradorProfesores.fila;
 import Administrador.Profesor;
 import Profesores.InicioProfesores;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -105,7 +106,7 @@ public class Login extends javax.swing.JFrame {
             AdministradorProfesores ap = new AdministradorProfesores();
             ap.setVisible(true);
         } else {
-            System.out.println("Invalido");
+            JOptionPane.showMessageDialog(this, "Codio o contraseña Invalidos");
         }
 
         for (int contadorProfesores = 0; contadorProfesores < profesores.length; contadorProfesores++) {
@@ -124,7 +125,8 @@ public class Login extends javax.swing.JFrame {
                 
                 return;
             } else {
-                System.out.println("Invalido");
+                System.out.println();
+                return;
             }
         }
     }//GEN-LAST:event_LoginBtnActionPerformed

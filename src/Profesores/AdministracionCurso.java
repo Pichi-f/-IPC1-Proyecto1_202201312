@@ -28,6 +28,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     public String apellido;
     public String correo;
     public String genero;
+    DefaultTableModel modelo;
 
     public AdministracionCurso() {
         initComponents();
@@ -36,6 +37,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
         this.setResizable(false);
         //Utilizado para visualizar en el centro la ventana
         this.setLocationRelativeTo(null);
+        
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Ponderación");
+        this.ListadoActividades.setModel(modelo);
     }
 
     /**
@@ -58,17 +65,17 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ListadoActividades = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        PonderacionImput = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        NombreImput = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        DescripcionImput = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        CrearActividadBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -133,7 +140,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jLabel4.setText("Listado Alumnos");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ListadoActividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -144,7 +151,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 "Nombre", "Descripción", "Ponderación"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(ListadoActividades);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 370, 130));
 
@@ -153,15 +160,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
         jLabel6.setText("Notas");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 310, -1));
+        jPanel1.add(PonderacionImput, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 310, -1));
 
         jLabel7.setText("Nombre");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 310, -1));
+        jPanel1.add(NombreImput, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 310, -1));
 
         jLabel8.setText("Descripción");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 310, -1));
+        jPanel1.add(DescripcionImput, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 310, -1));
 
         jLabel9.setText("Ponderación");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
@@ -169,8 +176,13 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jButton4.setText("Seleccionar Archivo CSV");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 310, -1));
 
-        jButton5.setText("Crear Avtividad");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 390, 30));
+        CrearActividadBtn.setText("Crear Avtividad");
+        CrearActividadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearActividadBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CrearActividadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 390, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
@@ -221,6 +233,19 @@ public class AdministracionCurso extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_CargaMAlumnosActionPerformed
+
+    private void CrearActividadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearActividadBtnActionPerformed
+        // TODO add your handling code here:
+        String[] info = new String[10];
+        info[0] = NombreImput.getText();
+        info[1] = DescripcionImput.getText();
+        info[2] = PonderacionImput.getText();
+        modelo.addRow(info);
+        
+        NombreImput.setText("");
+        DescripcionImput.setText("");
+        PonderacionImput.setText("");
+    }//GEN-LAST:event_CrearActividadBtnActionPerformed
 
     public void actualizarListadoAlumnos() {
         if (contadorAlumnos > 0) {
@@ -277,11 +302,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargaMAlumnos;
+    private javax.swing.JButton CrearActividadBtn;
+    private javax.swing.JTextField DescripcionImput;
+    private javax.swing.JTable ListadoActividades;
     private javax.swing.JTable ListadoAlumnos;
+    private javax.swing.JTextField NombreImput;
+    private javax.swing.JTextField PonderacionImput;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -294,9 +323,5 @@ public class AdministracionCurso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

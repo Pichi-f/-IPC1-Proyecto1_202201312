@@ -32,7 +32,7 @@ public class InicioProfesores extends javax.swing.JFrame {
         this.setResizable(false);
         //Utilizado para visualizar en el centro la ventana
         this.setLocationRelativeTo(null);
-        CursoBtn.setText("Curso");
+        
     }
 
     /**
@@ -66,6 +66,8 @@ public class InicioProfesores extends javax.swing.JFrame {
         jLabel1.setText("Curso Asignado");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
+        CursoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CursoBtn.setText("Curso");
         CursoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CursoBtnActionPerformed(evt);
