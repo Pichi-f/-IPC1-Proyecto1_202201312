@@ -5,6 +5,7 @@
 package Administrador;
 
 import Administrador.AdministradorProfesores;
+import Profesores.InicioProfesores;
 import java.util.Arrays;
 
 /**
@@ -94,6 +95,8 @@ public class ActualizarProfesor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ActualizarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 310, 40));
+
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

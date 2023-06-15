@@ -21,7 +21,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
      */
     public static Alumno[] alumnos = new Alumno[300];
     public static int contadorAlumnos;
-    
+
     public static int fila;
     public String codigo;
     public String nombre;
@@ -31,6 +31,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     public AdministracionCurso() {
         initComponents();
+        actualizarListadoAlumnos();
         //No se cambie el tamaño de la ventana
         this.setResizable(false);
         //Utilizado para visualizar en el centro la ventana
@@ -77,6 +78,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -84,17 +86,17 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel2.setText("Actividades");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
 
         ListadoAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Apellido", "Acciones"
+                "Codigo", "Nombre", "Apellido", "Correo", "Genero", "Nota"
             }
         ));
         ListadoAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,11 +105,16 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(ListadoAlumnos);
+        if (ListadoAlumnos.getColumnModel().getColumnCount() > 0) {
+            ListadoAlumnos.getColumnModel().getColumn(0).setPreferredWidth(40);
+            ListadoAlumnos.getColumnModel().getColumn(4).setPreferredWidth(40);
+            ListadoAlumnos.getColumnModel().getColumn(5).setPreferredWidth(30);
+        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 370, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 410, 230));
 
         jButton1.setText("Top 5 - Estudiantes con Peor Rendimiento");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 370, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 410, 30));
 
         jLabel3.setText("Resportes");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
@@ -118,10 +125,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 CargaMAlumnosActionPerformed(evt);
             }
         });
-        jPanel1.add(CargaMAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 370, -1));
+        jPanel1.add(CargaMAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 410, -1));
 
         jButton3.setText("Top 5 - Estudiantes con Mejor Rendimiento");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 370, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 410, 30));
 
         jLabel4.setText("Listado Alumnos");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -139,60 +146,39 @@ public class AdministracionCurso extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 370, 130));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 370, 130));
 
         jLabel5.setText("Crear Actividad");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, -1));
 
         jLabel6.setText("Notas");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
-
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 310, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 310, -1));
 
         jLabel7.setText("Nombre");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 310, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 310, -1));
 
         jLabel8.setText("Descripción");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, 310, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 310, -1));
 
         jLabel9.setText("Ponderación");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
 
         jButton4.setText("Seleccionar Archivo CSV");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 310, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 310, -1));
 
         jButton5.setText("Crear Avtividad");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 390, 30));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 390, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 590));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListadoAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListadoAlumnosMouseClicked
         // TODO add your handling code here:
-        int filaSeleccionada = ListadoAlumnos.getSelectedRow();
-        int columnaSeleccionada = ListadoAlumnos.getSelectedColumn();
-
-        fila = ListadoAlumnos.getSelectedRow();
-
-        codigo = ListadoAlumnos.getModel().getValueAt(fila, 0).toString();
-        nombre = ListadoAlumnos.getModel().getValueAt(fila, 1).toString();
-        apellido = ListadoAlumnos.getModel().getValueAt(fila, 2).toString();
-        correo = ListadoAlumnos.getModel().getValueAt(fila, 3).toString();
-
-        if (columnaSeleccionada == 3) { // Reemplaza TU_COLUMN_INDEX con el índice de la columna que contiene el enlace
-
-            // Abre la nueva ventana o realiza la acción correspondiente
-            // Puedes utilizar el código que necesites para abrir la ventana o realizar la acción deseada aquí
-            // Por ejemplo, puedes utilizar un nuevo JFrame para abrir una ventana
-            this.setVisible(false);
-            InformacionAlumno ap = new InformacionAlumno();
-            ap.setVisible(true);
-        }
     }//GEN-LAST:event_ListadoAlumnosMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -204,21 +190,21 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void CargaMAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargaMAlumnosActionPerformed
         // TODO add your handling code here:
-        JFileChooser fc = new JFileChooser();
-        fc.showOpenDialog(null);
+        JFileChooser fcu = new JFileChooser();
+        fcu.showOpenDialog(null);
 
-        String filePath = fc.getSelectedFile().getAbsolutePath();
+        String filePath = fcu.getSelectedFile().getAbsolutePath();
         System.out.println(filePath);
 
-        BufferedReader reader = null;
+        BufferedReader readerc = null;
         String line = "";
 
         contadorAlumnos = 0;
 
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            readerc = new BufferedReader(new FileReader(filePath));
             int contadorFila = 0;
-            while ((line = reader.readLine()) != null) {
+            while ((line = readerc.readLine()) != null) {
                 if (contadorFila > 0) {
                     String[] columnas = line.split(";");
 
@@ -230,26 +216,27 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
             contadorAlumnos = contadorFila - 1;
             System.out.println(Arrays.toString(alumnos));
-            ActualizarListadoAlumnos();
+            actualizarListadoAlumnos();
         } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_CargaMAlumnosActionPerformed
 
-    public void ActualizarListadoAlumnos() {
+    public void actualizarListadoAlumnos() {
         if (contadorAlumnos > 0) {
 
             //Actualizar listado
-            DefaultTableModel modeloListadoa = (DefaultTableModel) ListadoAlumnos.getModel();
-            modeloListadoa.setRowCount(contadorAlumnos);
+            DefaultTableModel modeloListadoc = (DefaultTableModel) ListadoAlumnos.getModel();
+            modeloListadoc.setRowCount(contadorAlumnos);
 
             for (int i = 0; i < contadorAlumnos; i++) {
-                modeloListadoa.setValueAt(alumnos[i].codigo, i, 0);
-                modeloListadoa.setValueAt(alumnos[i].nombre, i, 1);
-                modeloListadoa.setValueAt(alumnos[i].apellido, i, 2);
-                modeloListadoa.setValueAt("Ver más Información", i, 3);
-               
+                modeloListadoc.setValueAt(alumnos[i].codigo, i, 0);
+                modeloListadoc.setValueAt(alumnos[i].nombre, i, 1);
+                modeloListadoc.setValueAt(alumnos[i].apellido, i, 2);
+                modeloListadoc.setValueAt(alumnos[i].correo, i, 3);
+                modeloListadoc.setValueAt(alumnos[i].genero, i, 4);
             }
+
         }
     }
 

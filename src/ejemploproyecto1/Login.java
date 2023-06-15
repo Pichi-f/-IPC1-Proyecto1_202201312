@@ -20,6 +20,17 @@ public class Login extends javax.swing.JFrame {
      */
     public static Profesor[] profesores = new Profesor[50];
     public static int contadorProfesores;
+    
+    public static String codigo;
+    public static String nombre;
+    public static String apellido;
+    public static String correo;
+    public static String contraseña;
+    public static String genero;
+    
+    public String creditos;
+    public String alumnos;
+    public String profesor;
 
     public Login() {
         initComponents();
@@ -40,13 +51,14 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        LoginBtn = new javax.swing.JButton();
         CodigoInput = new javax.swing.JTextField();
         PasswordInput = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -61,14 +73,14 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("DTT");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Iniciar Sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LoginBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LoginBtn.setText("Iniciar Sesión");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LoginBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 320, -1));
+        jPanel1.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 320, -1));
 
         CodigoInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,12 +90,12 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(CodigoInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 320, -1));
         jPanel1.add(PasswordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 320, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 280));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
         // TODO add your handling code here:
         String codigo = CodigoInput.getText();
         String contraseña = PasswordInput.getText();
@@ -98,16 +110,24 @@ public class Login extends javax.swing.JFrame {
 
         for (int contadorProfesores = 0; contadorProfesores < profesores.length; contadorProfesores++) {
             if (AdministradorProfesores.profesores[contadorProfesores] != null && AdministradorProfesores.profesores[contadorProfesores].codigo.equals(codigo) && AdministradorProfesores.profesores[contadorProfesores].contraseña.equals(contraseña)) {
+                codigo = AdministradorProfesores.profesores[contadorProfesores].codigo;
+                nombre = AdministradorProfesores.profesores[contadorProfesores].nombre;
+                apellido = AdministradorProfesores.profesores[contadorProfesores].apellido;
+                correo = AdministradorProfesores.profesores[contadorProfesores].correo;
+                contraseña = AdministradorProfesores.profesores[contadorProfesores].contraseña;
+                genero = AdministradorProfesores.profesores[Login.contadorProfesores].genero;
+                
                 System.out.println("comprobado");
                 this.setVisible(false);
                 InicioProfesores ip = new InicioProfesores();
                 ip.setVisible(true);
+                
                 return;
             } else {
                 System.out.println("Invalido");
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void CodigoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoInputActionPerformed
         // TODO add your handling code here:
@@ -150,8 +170,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CodigoInput;
+    private javax.swing.JButton LoginBtn;
     private javax.swing.JPasswordField PasswordInput;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -74,6 +74,8 @@ public class CrearCurso extends javax.swing.JFrame {
         getContentPane().add(CreditosInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 320, -1));
         getContentPane().add(ProfesorInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 320, -1));
 
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+
         AgregarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         AgregarBtn.setText("Agregar");
         AgregarBtn.addActionListener(new java.awt.event.ActionListener() {

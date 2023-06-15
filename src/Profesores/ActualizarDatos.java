@@ -96,6 +96,8 @@ public class ActualizarDatos extends javax.swing.JFrame {
         });
         getContentPane().add(ActualizarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 310, 40));
 
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,7 +117,7 @@ public class ActualizarDatos extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         this.setVisible(false);
-        AdministradorProfesores ap = new AdministradorProfesores();
+        InicioProfesores ap = new InicioProfesores();
         ap.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
