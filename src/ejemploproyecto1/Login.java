@@ -106,7 +106,7 @@ public class Login extends javax.swing.JFrame {
             AdministradorProfesores ap = new AdministradorProfesores();
             ap.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Codio o contraseña Invalidos");
+            System.out.println();
         }
 
         for (int contadorProfesores = 0; contadorProfesores < profesores.length; contadorProfesores++) {
@@ -126,7 +126,6 @@ public class Login extends javax.swing.JFrame {
                 return;
             } else {
                 System.out.println();
-                return;
             }
         }
     }//GEN-LAST:event_LoginBtnActionPerformed

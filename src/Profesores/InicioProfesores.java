@@ -49,7 +49,6 @@ public class InicioProfesores extends javax.swing.JFrame {
         CursoBtn = new javax.swing.JButton();
         AlumnosBtn = new javax.swing.JButton();
         ActualizarDatosBtn = new javax.swing.JButton();
-        lbltext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,9 +82,6 @@ public class InicioProfesores extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ActualizarDatosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
-
-        lbltext.setText("jLabel2");
-        jPanel1.add(lbltext, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 380));
 
@@ -167,6 +163,5 @@ public class InicioProfesores extends javax.swing.JFrame {
     private javax.swing.JButton CursoBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbltext;
     // End of variables declaration//GEN-END:variables
 }

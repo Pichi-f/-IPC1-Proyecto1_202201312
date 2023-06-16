@@ -472,7 +472,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
                 + "<html>\n"
                 + "<body>\n"
                 + "\n"
-                + "<h1>Ejemplo</h1>\n"
+                + "<h1>Reporte</h1>\n"
                 + "\n"
                 + "<table style=\"margin:auto\">\n"
                 + "     <tr>\n"
@@ -523,7 +523,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
                 + "<html>\n"
                 + "<body>\n"
                 + "\n"
-                + "<h1>Ejemplo</h1>\n"
+                + "<h1>Reporte</h1>\n"
                 + "\n"
                 + "<table style=\"margin:auto\">\n"
                 + "     <tr>\n"
@@ -592,7 +592,7 @@ public class AdministradorProfesores extends javax.swing.JFrame {
 
             for (int i = 0; i < contadorProfesores; i++) {
                 //Si es hombre
-                if (profesores[i].genero.equals("M")) {
+                if (profesores[i].genero.equals("m")) {
                     masculino++;
                     //Si es mujer
                 } else {

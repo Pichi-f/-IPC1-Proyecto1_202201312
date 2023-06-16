@@ -6,6 +6,8 @@ package Profesores;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +23,8 @@ public class AdministracionCurso extends javax.swing.JFrame {
      */
     public static Alumno[] alumnos = new Alumno[300];
     public static int contadorAlumnos;
+    public static Nota[] notas = new Nota[300];
+    public static int contadorNotas;
 
     public static int fila;
     public String codigo;
@@ -30,14 +34,17 @@ public class AdministracionCurso extends javax.swing.JFrame {
     public String genero;
     DefaultTableModel modelo;
 
+    public String nota;
+
     public AdministracionCurso() {
         initComponents();
         actualizarListadoAlumnos();
+        actualizarListadoNotas();
         //No se cambie el tamaño de la ventana
         this.setResizable(false);
         //Utilizado para visualizar en el centro la ventana
         this.setLocationRelativeTo(null);
-        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
         modelo.addColumn("Descripción");
@@ -59,10 +66,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListadoAlumnos = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        EliminarEstuBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         CargaMAlumnos = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        HTMLAlumnosBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListadoActividades = new javax.swing.JTable();
@@ -74,8 +81,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         DescripcionImput = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        CSVActividadBtn = new javax.swing.JButton();
         CrearActividadBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        AcumuladoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -120,11 +129,16 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 410, 230));
 
-        jButton1.setText("Top 5 - Estudiantes con Peor Rendimiento");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 410, 30));
+        EliminarEstuBtn.setText("Eliminar Estudiante");
+        EliminarEstuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEstuBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(EliminarEstuBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 410, -1));
 
-        jLabel3.setText("Resportes");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
+        jLabel3.setText("Reporte");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         CargaMAlumnos.setText("Carga Masiva Alumnos");
         CargaMAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -132,10 +146,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 CargaMAlumnosActionPerformed(evt);
             }
         });
-        jPanel1.add(CargaMAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 410, -1));
+        jPanel1.add(CargaMAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 410, -1));
 
-        jButton3.setText("Top 5 - Estudiantes con Mejor Rendimiento");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 410, 30));
+        HTMLAlumnosBtn.setText("Exportar Listado Alumnos HTML");
+        HTMLAlumnosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HTMLAlumnosBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(HTMLAlumnosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 410, 30));
 
         jLabel4.setText("Listado Alumnos");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -173,8 +192,13 @@ public class AdministracionCurso extends javax.swing.JFrame {
         jLabel9.setText("Ponderación");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
 
-        jButton4.setText("Seleccionar Archivo CSV");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 310, -1));
+        CSVActividadBtn.setText("Seleccionar Archivo CSV");
+        CSVActividadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CSVActividadBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CSVActividadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 310, -1));
 
         CrearActividadBtn.setText("Crear Avtividad");
         CrearActividadBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +207,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
         jPanel1.add(CrearActividadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 390, 30));
+
+        jLabel10.setText("Acumulado:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 240, -1, -1));
+
+        AcumuladoLbl.setText("0/100");
+        jPanel1.add(AcumuladoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
@@ -198,6 +228,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         this.setVisible(false);
         InicioProfesores lg = new InicioProfesores();
         lg.setVisible(true);
+
     }//GEN-LAST:event_formWindowClosing
 
     private void CargaMAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargaMAlumnosActionPerformed
@@ -241,11 +272,118 @@ public class AdministracionCurso extends javax.swing.JFrame {
         info[1] = DescripcionImput.getText();
         info[2] = PonderacionImput.getText();
         modelo.addRow(info);
-        
+
         NombreImput.setText("");
         DescripcionImput.setText("");
         PonderacionImput.setText("");
+
+        sumar();
+
     }//GEN-LAST:event_CrearActividadBtnActionPerformed
+
+    private void CSVActividadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CSVActividadBtnActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fcn = new JFileChooser();
+        fcn.showOpenDialog(null);
+
+        String filePath = fcn.getSelectedFile().getAbsolutePath();
+        System.out.println(filePath);
+
+        BufferedReader readerc = null;
+        String line = "";
+
+        contadorNotas = 0;
+
+        try {
+            readerc = new BufferedReader(new FileReader(filePath));
+            int contadorFila = 0;
+            while ((line = readerc.readLine()) != null) {
+                if (contadorFila > 0) {
+                    String[] columnas = line.split(";");
+
+                    Nota nt = new Nota(columnas[0], columnas[1]);
+
+                    notas[contadorFila - 1] = nt;
+                }
+                contadorFila++;
+            }
+            contadorNotas = contadorFila - 1;
+            System.out.println(Arrays.toString(alumnos));
+            actualizarListadoNotas();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_CSVActividadBtnActionPerformed
+
+    private void HTMLAlumnosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HTMLAlumnosBtnActionPerformed
+        // TODO add your handling code here:
+
+        String cadenaHTML = "<!DOCTYPE html>\n"
+                + "<html>\n"
+                + "<body>\n"
+                + "\n"
+                + "<h1>Resporte</h1>\n"
+                + "\n"
+                + "<table style=\"margin:auto\">\n"
+                + "     <tr>\n"
+                + "         <th>Codigo</th>\n"
+                + "         <th>Nombre</th>\n"
+                + "         <th>Apellido</th>\n"
+                + "         <th>Correo</th>\n"
+                + "         <th>Genero</th>\n"
+                + "         <th>Nota</th>\n"
+                + "     </tr>";
+
+        for (int i = 0; i < contadorNotas; i++) {
+            cadenaHTML += "<tr>\n"
+                    + "<td>" + alumnos[i].codigo + "</td>\n"
+                    + "<td>" + alumnos[i].nombre + "</td>\n"
+                    + "<td>" + alumnos[i].apellido + "</td>\n"
+                    + "<td>" + alumnos[i].correo + "</td>\n"
+                    + "<td>" + alumnos[i].genero + "</td>\n"
+                    + "<td>" + notas[i].nota + "</td>\n"
+                    + "</tr>";
+
+        }
+
+        cadenaHTML += "</table>\n"
+                + "</body>\n"
+                + "</html>\n";
+
+        System.out.println(cadenaHTML);
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+
+        try {
+            fichero = new FileWriter("./Reportes/ReporteAlumnosHTML.html");
+            pw = new PrintWriter(fichero);
+
+            pw.println(cadenaHTML);
+            fichero.close();
+            System.out.println(cadenaHTML);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_HTMLAlumnosBtnActionPerformed
+
+    private void EliminarEstuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEstuBtnActionPerformed
+        // TODO add your handling code here:
+        fila = ListadoAlumnos.getSelectedRow();
+
+        //Usada para ocupar el espacio de la palabra elminada
+        for (int i = fila; i < contadorAlumnos; i++) {
+            alumnos[i] = alumnos[i + 1];
+            notas[i] = notas[i+1];
+        }
+        //Se reduce en uno la cantidad de profesores
+        contadorAlumnos--;
+        contadorNotas--;
+
+        actualizarListadoAlumnos();
+        actualizarListadoNotas();
+    }//GEN-LAST:event_EliminarEstuBtnActionPerformed
 
     public void actualizarListadoAlumnos() {
         if (contadorAlumnos > 0) {
@@ -261,8 +399,55 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 modeloListadoc.setValueAt(alumnos[i].correo, i, 3);
                 modeloListadoc.setValueAt(alumnos[i].genero, i, 4);
             }
+            mayorTopcinco();
 
         }
+    }
+
+    public void actualizarListadoNotas() {
+        if (contadorNotas > 0) {
+
+            //Actualizar listado
+            DefaultTableModel modeloListadoc = (DefaultTableModel) ListadoAlumnos.getModel();
+            modeloListadoc.setRowCount(contadorNotas);
+
+            for (int i = 0; i < contadorNotas; i++) {
+                modeloListadoc.setValueAt(notas[i].codigo, i, 0);
+                modeloListadoc.setValueAt(notas[i].nota, i, 5);
+            }
+
+        }
+
+    }
+    
+    public static void mayorTopcinco(){
+        //hacer top 3
+            Nota[] arregloCopia = notas.clone();
+            //Burbuja
+            for (int comprobacion = 0; comprobacion < contadorNotas; comprobacion++) {
+                //Ciclo para recorrer los elementos del arreglo
+                for (int elementoArreglo = 0; elementoArreglo < contadorNotas - 1; elementoArreglo++) {
+                    Nota elementoActual = arregloCopia[elementoArreglo];
+                    Nota elementoSiguiente = arregloCopia[elementoArreglo + 1];
+
+                    //Si el actual es mayor al siguiente
+                    if (Integer.valueOf(elementoActual.nota) < Integer.valueOf(elementoSiguiente.nota)) {
+                        //Se hace el intercambio
+                        arregloCopia[elementoArreglo] = elementoSiguiente;
+                        arregloCopia[elementoArreglo + 1] = elementoActual;
+                    }
+                }
+            }
+    }
+
+    public void sumar() {
+        int fila = 0;
+        int total = 0;
+        for (int i = 0; i < ListadoActividades.getRowCount(); i++) {
+            fila = Integer.parseInt(ListadoActividades.getValueAt(i, 2).toString());
+            total += fila;
+        }
+        AcumuladoLbl.setText(total + "/100");
     }
 
     /**
@@ -301,17 +486,19 @@ public class AdministracionCurso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AcumuladoLbl;
+    private javax.swing.JButton CSVActividadBtn;
     private javax.swing.JButton CargaMAlumnos;
     private javax.swing.JButton CrearActividadBtn;
     private javax.swing.JTextField DescripcionImput;
+    private javax.swing.JButton EliminarEstuBtn;
+    private javax.swing.JButton HTMLAlumnosBtn;
     private javax.swing.JTable ListadoActividades;
     private javax.swing.JTable ListadoAlumnos;
     private javax.swing.JTextField NombreImput;
     private javax.swing.JTextField PonderacionImput;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
